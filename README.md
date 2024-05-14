@@ -22,7 +22,7 @@ This is a simple desktop application built with Python and the customtkinter lib
 ## Requirements
 - Python 3.x
 - Pillow (PIL) library
-- Tkinter library
+- customTkinter library (https://customtkinter.tomschimansky.com/)
 
 ## Installation
 1. Clone the repository to your local machine:
