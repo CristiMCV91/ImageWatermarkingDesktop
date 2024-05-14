@@ -11,6 +11,16 @@ text_color = ((255, 0, 0), '#ff0000')  # Text color for watermark (RGB value and
 text_transparency = 255  # Transparency of the text for watermark (0 - fully transparent, 255 - fully opaque)
 text_size_var = 50  # Initial size of the text for watermark
 
+# Define the appearance switch event function
+def appearance_switch_event():
+    # Check if the appearance switch is turned on/off and set the appearance mode to "light" or "dark"
+    if appearance_var.get() == "on":
+        appearance_mode = "light"
+        customtkinter.set_appearance_mode("light")
+    elif appearance_var.get() == "off":
+        appearance_mode = "dark"
+        customtkinter.set_appearance_mode("dark")
+
 # Function to set the thumbnail of the image
 def setThumbnail(image):
     global tk_resized_img
@@ -46,7 +56,9 @@ def selectFile():
 
         # Set image thumbnail
         setThumbnail(img)
-        addWatermark(image=img, text=watermark_text_var.get(), color=text_color[0])
+        addWatermark(image=global_image, text=watermark_text_var.get(), font_size=int(text_size_var.get()),
+                     color=text_color[0], transparency=text_transparency,
+                     pos_x=slider_x.get(), pos_y=slider_y.get())
 
         # Activate the state of watermark features
         watermark_text.configure(state="normal")
@@ -68,7 +80,9 @@ def selectFile():
 
 # Function to handle text change event
 def on_text_changed(*args):
-    addWatermark(image=global_image, text=watermark_text_var.get(), color=text_color[0], transparency=text_transparency)
+    addWatermark(image=global_image, text=watermark_text_var.get(), font_size=int(text_size_var.get()),
+                 color=text_color[0], transparency=text_transparency,
+                 pos_x=slider_x.get(), pos_y=slider_y.get())
 
 # Callback function for text size selection
 def textSizeCallback(choice):
@@ -171,7 +185,7 @@ def saveImage():
         print("Image saved with success at path: ", save_file_path)
 
 # System Settings
-customtkinter.set_appearance_mode("System")
+customtkinter.set_appearance_mode("system")
 customtkinter.set_default_color_theme("blue")
 
 # App windows
@@ -202,12 +216,18 @@ image_path.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 select_file_btn = customtkinter.CTkButton(first_frame, text="Select image", command=selectFile)
 select_file_btn.grid(row=1, column=1, padx=10, pady=10, sticky="w")
 
+# Select appearance mode Dark/Light mode
+appearance_var = customtkinter.StringVar(value="on")
+appearance_switch = customtkinter.CTkSwitch(app, text="Appearance mode (dark/light)", command=appearance_switch_event,
+                                 variable=appearance_var, onvalue="on", offvalue="off")
+appearance_switch.grid(row=0, column=1, padx=10, pady=10, sticky="w")
+
 # Show Image
 show_image_lbl = customtkinter.CTkLabel(second_frame, text="")
 show_image_lbl.place(x=0, y=0)
 show_image_lbl.grid(row=0, column=0, padx=10, pady=10, sticky="n w e")
 
-# Whatermark title
+# Watermark title
 watermark_title= customtkinter.CTkLabel(third_frame, text="ADD WATERMARK ", font=('Helvetica',14,'bold'))
 watermark_title.grid(row=0, column=0, padx=10, pady=10, sticky="n w")
 

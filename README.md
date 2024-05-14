@@ -2,9 +2,10 @@
 
 ## Overview
 This is a simple desktop application built with Python and the customtkinter library for adding watermarks to images. With this application, users can easily load an image, add custom text as a watermark, adjust the text size, color, and transparency, and save the watermarked image to your local system.
-![image](https://github.com/CristiMCV91/ImageWatermarkingDesktop/assets/166052941/c0c22fc3-90be-4a9e-b3ef-8843c43007f3)
 
-
+The appearance mode of the application starts with the default system value, but this can be changed between dark/light mode.
+![img.png](resource/Application_GUI_light.png)
+![img.png](resource/Application_GUI_dark.png)
 
 ## Features
 - Load images from local files.
