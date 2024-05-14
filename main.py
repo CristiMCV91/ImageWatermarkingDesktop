@@ -134,13 +134,13 @@ def addWatermark(image=global_image, text="", font_size=text_size_var, color=tex
 
     setThumbnail(img_watermark)
 
-# Function to handle slider X event
+# Function to handle slider X axis event
 def slider_x_event(value):
     pos_lbl.configure(text=(f'Watermark position XY axis: ({int(slider_x.get())},{int(slider_y.get())})'))
     addWatermark(image=global_image, text=watermark_text_var.get(), font_size=int(text_size_var.get()), color=text_color[0], transparency=text_transparency, pos_x=slider_x.get(), pos_y=slider_y.get())
 
 
-# Function to handle slider Y event
+# Function to handle slider Y axis event
 def slider_y_event(value):
     pos_lbl.configure(text=(f'Watermark position XY axis: ({int(slider_x.get())},{int(slider_y.get())})'))
     addWatermark(image=global_image, text=watermark_text_var.get(), font_size=int(text_size_var.get()), color=text_color[0], transparency=text_transparency, pos_x=slider_x.get(), pos_y=slider_y.get())
@@ -270,7 +270,6 @@ slider_y.grid(row=10, column=0, padx=10, pady=10, sticky="w s")
 # Button to save watermark
 save_file_btn = customtkinter.CTkButton(third_frame, text="Save image", state="disabled", command=saveImage)
 save_file_btn.grid(row=11, column=0, padx=10, pady=10, sticky="w n")
-
 
 
 # Run app
